@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+body {
+	background-color: #5a6b77;
+}
+
+header {
+	background-color: #668cad;
+}
+
+label {
+	margin: 5px 0;
+}
+
+input {
+	margin-bottom: 15px;
+}
+
+.container {
+	min-height: 600px;
+}
+
+.footer {
+	font-size: 12px;
+	text-align: center;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: #333;
+}
