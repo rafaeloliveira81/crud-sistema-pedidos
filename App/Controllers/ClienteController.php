@@ -61,8 +61,9 @@ class ClienteController extends Page
 			</script>";
 	}
 
-	public function delCliente()
+	public function delCliente($params)
 	{
+		print_r($params);
 		$content = View::render('deletar-cliente');
 		return Page::getPage('Sistema de Pedidos :: Clientes > Deletar', $content);
 	}

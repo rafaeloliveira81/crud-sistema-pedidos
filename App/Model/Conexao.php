@@ -6,7 +6,7 @@ class Conexao
 {
 	private static $instance;
 
-	public function getConexao() {
+	public static function getConexao() {
 		if (!isset(self::$instance)) {
 			try
 			{

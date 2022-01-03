@@ -52,6 +52,12 @@ $router->post('/produto-cadastro', function ()
 	echo $produto->addProduto($_POST);
 });
 
+$router->get('/deletar-cliente', function ()
+{
+	$cliente = new ClienteController;
+	echo $cliente->delCliente($_GET);
+});
+
 $result = $router->handler();
 
 if (!$result)
