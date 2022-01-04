@@ -49,7 +49,7 @@ class ProdutoDAO
 		return $result;
 	}
 
-	public function updateProduto($produto)
+	public function updateProduto(Produto $produto)
 	{
 		$query = 'UPDATE Produtos 
 			SET descricao=:descricao, preco=:preco, unidade=:unidade 

@@ -86,9 +86,9 @@ class ClienteController extends Page
 			</script>";
 	}
 
-	public function getDelCliente($params)
+	public function getDelCliente($id)
 	{
-		$clienteId = $this->getClienteId((int)$params);
+		$clienteId = $this->getClienteId((int)$id);
 		$content = View::render('deletar-cliente', [
 			'codigo' => $clienteId['codigo'],
 			'nome' => $clienteId['nome'],

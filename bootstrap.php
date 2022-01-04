@@ -2,7 +2,9 @@
 
 use App\Controllers\ClienteController;
 use App\Controllers\HomeController;
+use App\Controllers\PedidoController;
 use App\Controllers\ProdutoController;
+use App\Model\Pedido;
 use App\Router;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -80,6 +82,30 @@ $router->get('/produto-atualizar', function ()
 {
 	$produto = new ProdutoController;
 	echo $produto->editProduto($_GET['id']);
+});
+
+$router->post('/produto-atualizar', function ()
+{
+	$produto = new ProdutoController;
+	echo $produto->updateProduto($_POST);
+});
+
+$router->get('/produto-deletar', function ()
+{
+	$produto = new ProdutoController;
+	echo $produto->getDelProduto($_GET['id']);
+});
+
+$router->post('/produto-deletar', function ()
+{
+	$produto = new ProdutoController;
+	echo $produto->delProduto($_POST);
+});
+
+$router->get('/pedidos', function ()
+{
+	$pedido = new PedidoController;
+	echo $pedido->listPedidos();
 });
 
 $result = $router->handler();
