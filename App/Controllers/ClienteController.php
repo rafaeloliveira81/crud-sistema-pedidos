@@ -24,6 +24,13 @@ class ClienteController extends Page
 		return $itens;
 	}
 
+	public function getClienteId($id)
+	{
+		$clienteDao = new ClienteDAO;
+		$cliente = $clienteDao->getClienteId($id);
+		return $cliente;
+	}
+
 	public static function listCliente()
 	{
 		$content = View::render('clientes', [
@@ -39,11 +46,29 @@ class ClienteController extends Page
 		return Page::getPage('Sistema de Pedidos :: Clientes > Cadastro', $content);
 	}
 
-	public function updateCliente($id)
+	public function editCliente($clienteId)
 	{
+		$content = View::render('editar_cliente', [
+			'codigo' => $clienteId['codigo'],
+			'nome' => $clienteId['nome'],
+			'cpf' => $clienteId['cpf']
+		]);
+		return Page::getPage('Sistema de Pedidos :: Clientes > Cadastro', $content);
+	}
+
+	public function updateCliente($data)
+	{
+		$cliente = new Cliente;
+		$cliente->setNome($data['nome']);
+		$cliente->setCpf($data['cpf']);
 		$clienteDao = new ClienteDAO;
-		$cliente = $clienteDao->getClienteId($id);
-		print_r($cliente);
+		$clienteDao->updateCliente($data['codigo'],$cliente);
+
+		return "
+			<script>
+				alert('Editado com sucesso')
+				window.location.href='http://localhost:3000/clientes'
+			</script>";
 	}
 
 	public function addCliente($data) 
@@ -61,10 +86,26 @@ class ClienteController extends Page
 			</script>";
 	}
 
-	public function delCliente($params)
+	public function getDelCliente($params)
 	{
-		print_r($params);
-		$content = View::render('deletar-cliente');
+		$clienteId = $this->getClienteId((int)$params);
+		$content = View::render('deletar-cliente', [
+			'codigo' => $clienteId['codigo'],
+			'nome' => $clienteId['nome'],
+			'cpf' => $clienteId['cpf']
+		]);
 		return Page::getPage('Sistema de Pedidos :: Clientes > Deletar', $content);
+	}
+
+	public function delCliente($data)
+	{
+		$clienteDao = new ClienteDAO;
+		$clienteDao->delCliente($data['codigo']);
+
+		return "
+			<script>
+				alert('Excluido com sucesso')
+				window.location.href='http://localhost:3000/clientes'
+			</script>";
 	}
 }

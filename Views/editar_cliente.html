@@ -1,6 +1,5 @@
 <div class="p-4">
-	<p>Deseja realmente excluir este cliente?</p>
-	<form action="cliente-deletar" method="post" accept-charset="utf-8">
+	<form action="cliente-atualizar" method="post" accept-charset="utf-8">
 		<div class="form-group">
 			<label for="codigo">Id</label>
 			<input class="form-control" type="text" name="codigo" id="codigo" value="{{codigo}}" placeholder="Nome Completo ...">
@@ -14,7 +13,7 @@
 			<input class="form-control" type="text" name="cpf" id="cpf" value="{{cpf}}" placeholder="CPF ...">
 		</div>
 		<div class="form-group">
-			<input class="btn btn-primary mt-3 me-3" type="submit" value="Excluir" />
+			<input class="btn btn-primary mt-3 me-3" type="submit" value="Salvar" />
 			<a class="btn btn-secondary" href="clientes">Cancelar</a>
 		</div>
 	</form>

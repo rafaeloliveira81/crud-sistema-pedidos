@@ -25,13 +25,37 @@ $router->get('/clientes', function ()
 $router->get('/cliente', function () 
 {
 	$cliente = new ClienteController;
-	echo $cliente->getCliente($_GET);
+	if(isset($_GET['id']))
+	{
+		$clienteId = $cliente->getClienteId($_GET['id']);
+		echo $cliente->editCliente($clienteId);
+		die();
+	}
+	echo $cliente->getCliente();
 });
 
 $router->post('/cliente-cadastro', function () 
 {
+		$cliente = new ClienteController;
+		echo $cliente->addCliente($_POST);
+});
+
+$router->post('/cliente-atualizar', function () 
+{
+		$cliente = new ClienteController;
+		echo $cliente->updateCliente($_POST);
+});
+
+$router->get('/cliente-deletar', function ()
+{
 	$cliente = new ClienteController;
-	echo $cliente->addCliente($_POST);
+	echo $cliente->getDelCliente($_GET['id']);
+});
+
+$router->post('/cliente-deletar', function () 
+{
+	$cliente = new ClienteController;
+	echo $cliente->delCliente($_POST);
 });
 
 $router->get('/produtos', function ()
@@ -52,10 +76,10 @@ $router->post('/produto-cadastro', function ()
 	echo $produto->addProduto($_POST);
 });
 
-$router->get('/deletar-cliente', function ()
+$router->get('/produto-atualizar', function ()
 {
-	$cliente = new ClienteController;
-	echo $cliente->delCliente($_GET);
+	$produto = new ProdutoController;
+	echo $produto->editProduto($_GET['id']);
 });
 
 $result = $router->handler();
